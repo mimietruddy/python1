@@ -9,6 +9,16 @@
     <!-- CSS Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <style>
+        .form {
+            max-width: 40rem;
+        }
+
+        table tbody {
+            font-size: 1rem !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,21 +29,56 @@
         </h1>
 
         <!-- List all visitors here -->
-        <div class="d-flex flex-column justify-content-start px-3">
-            <form class="my-3">
-                <input class="form-control w-75" placeholder="Type to search for visitors" type="search"
+        <div class="d-flex flex-column justify-content-start align-items-center px-3">
+            <form class="form my-3 w-75">
+                <input class="form-control" placeholder="Type to search for visitors" type="search"
                     name="search_visitors" />
             </form>
-            <section class="lead">
-                Previous visitors' info.
+            <section class="w-md-75 d-flex flex-column align-items-center align-content-center justify-content-center">
+                <p class="my-2 lead"> Previous visitors' info.
+                </p><br />
+
+                <table class="table table-responsive table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th class="px-n4">#</th>
+                            <th>Name</th>
+                            <th>Temperature</th>
+                            <th>Date</th>
+                            <th>ID No.</th>
+                            <th>Telephone Number</th>
+                            <th>Company</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for visitor in visitors %}
+                        <small>
+                            <tr class="py-3">
+                                <th class="px-n2">{{ visitor.id }}</th>
+                                <td>{{ visitor.name }}</td>
+                                <td>{{ visitor.temperature }}</td>
+                                <td>{{ visitor.date }}</td>
+                                <th>{{ visitor.id_number }}</th>
+                                <td>{{ visitor.telephone_number }}</td>
+                                <td>{{ visitor.company }}</td>
+                            </tr>
+                        </small>
+                        {% endfor %}
+                    </tbody>
+                </table>
             </section>
         </div>
     </main>
 
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
     <!-- JS Bootstrap -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
         integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
         crossorigin="anonymous"></script>
+
 </body>
 
 </html>
