@@ -248,10 +248,7 @@
         .underlineHover:hover:after {
             width: 100%;
         }
-
-
-
-        /* OTHERS */
+       /* OTHERS */
 
         *:focus {
             outline: none;
@@ -274,10 +271,14 @@
 
         <main class="formContent w-50">
             <!-- Login Form -->
-            <form class="w-100" method="POST" action="{% url 'homepage' %}">
+                {% if message %}
+                    {{ message }}
+                 {% endif %}
+            <form class="w-100" method="POST" action=".">
                 {% csrf_token %}
-                <input type="text" id="login" class="fadeIn first" name="login" placeholder="login">
-                <input type="password" id="password" class="fadeIn second" name="login" placeholder="password">
+
+                <input type="text" id="login" class="fadeIn first" name="username" placeholder="username">
+                <input type="password" id="password" class="fadeIn second" name="password" placeholder="*******">
                 <input type="submit" class="fadeIn third" value="Log In">
             </form>
 
