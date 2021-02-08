@@ -28,4 +28,3 @@ def login_page(request):
             context = { 'message': 'Please login with right credentials' }
             return render(request, 'design_hub_app/login.html',context= context )       
         return render(request, 'design_hub_app/login.html')       
-      

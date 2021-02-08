@@ -22,10 +22,16 @@
 </head>
 
 <body>
-    <!-- Log Out section ->
-        
+    <!-- Log Out section -->
+    <nav class="d-flex justify-content-end align-items-center flex-row flex-nowrap">
+        <span class="pr-3"> Welcome, {{ user.username }}</span>
+        <span class="py-3 mr-3">
+            <a class="nav-link border rounded"  href="{% url 'logout' %}">Log Out
+            </a>
+        </span>
+    </nav>
     <main class="">
-        <h1 class="text-bold jumbotron">
+        <h1 class="text-bold jumbotron mx-n2">
             Design Hub
             <small class="lead">Check In</small>
         </h1>

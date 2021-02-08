@@ -22,11 +22,20 @@
 </head>
 
 <body>
+    <main class="d-block">
+        <h1 class="text-bold jumbotron mx-n2">
+            Design Hub
+            <small class="lead">Check In</small>
+        </h1>
+        <section class="d-block pl-4 my-5 mx-auto">
+            <h3 class="">Logged out!</h3>
+            <p class="my-4">
+            <a href="{% url 'login' %}" class="btn-link"> Click to login again!</a>
+            </p>
+        </section>
+    </main>
 
-{% block content %}
-  <p>Logged out!</p>
-  <a href="{% url '/' %}">Click here to login again.</a>
-{% endblock %}
+
 
 
     <!-- Jquery -->
