@@ -1,6 +1,7 @@
-from typing import Text
 from django.db import models
-from django.db.models.fields import CharField, DateField, TextField
+from django.forms import ModelForm
+from django.shortcuts import redirect
+
 
 # Create your models here.
 class Visitor(models.Model):
@@ -13,3 +14,22 @@ class Visitor(models.Model):
 
     def __str__(self):
         return self.name
+
+#  Add a new visitor
+class VisitorForm(ModelForm):
+    required_css_class = 'required'
+
+    class Meta:
+        model = Visitor
+        exclude = ['id']
+
+    # def clean(self):
+    #      cleaned_data = super().clean()
+    #      phone = cleaned_data.get("phone")
+    #      phone = cleaned_data.get("phone")
+    #      phone = cleaned_data.get("phone")
+    #      email_address = cleaned_data.get("email_address")
+    #      if not (phone or email_address):
+    #          raise forms.ValidationError(
+    #              "You must enter either a phone number or an email, or both."
+    #          )

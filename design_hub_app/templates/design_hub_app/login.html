@@ -272,7 +272,7 @@
         <main class="formContent w-50">
             <!-- Login Form -->
                 {% if message %}
-                    {{ message }}
+                    <span class="my-3 alert alert-danger">{{ message }}</span>
                  {% endif %}
             <form class="w-100" method="POST" action=".">
                 {% csrf_token %}

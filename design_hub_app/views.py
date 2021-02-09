@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.conf import settings
 from django.shortcuts import redirect, render
-from .models import Visitor
+from .models import Visitor, VisitorForm
 
 # Create your views here.
 
@@ -28,3 +28,21 @@ def login_page(request):
             context = { 'message': 'Please login with right credentials' }
             return render(request, 'design_hub_app/login.html',context= context )       
         return render(request, 'design_hub_app/login.html')       
+
+
+# Add new visitor
+def add_new_visitor(request):
+    submitted = False
+
+    if request.method == 'POST':
+        form = VisitorForm(request.POST)
+        
+        if form.is_valid():
+             form.save()
+             return redirect('/add_new_visitor/?submitted=True')
+    else:
+        form = VisitorForm()
+        if 'submitted' in request.GET:
+             submitted = True 
+    return render(request, 'design_hub_app/add_new_visitor.html', {'form': form, 'submitted': submitted})
+   

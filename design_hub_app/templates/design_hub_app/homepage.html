@@ -18,26 +18,36 @@
         table tbody {
             font-size: 1rem !important;
         }
+        .add-new-visitor:hover,
+        .add-new-visitor:focus
+        {
+            text-decoration: none;
+        }
+        .visitors{
+             border-bottom: 1px solid #eee;
+        }
     </style>
 </head>
 
 <body>
     <!-- Log Out section -->
     <nav class="d-flex justify-content-end align-items-center flex-row flex-nowrap">
+        <span class="mr-auto pl-5 lead">
+            <a class="" href="{% url 'homepage' %}">Home </a></span>
         <span class="pr-3"> Welcome, {{ user.username }}</span>
         <span class="py-3 mr-3">
-            <a class="nav-link border rounded"  href="{% url 'logout' %}">Log Out
+            <a class="nav-link border rounded" href="{% url 'logout' %}">Log Out
             </a>
         </span>
     </nav>
-    <main class="">
-        <h1 class="text-bold jumbotron mx-n2">
+    <main class="mb-5 px-3">
+        <h1 class="text-bold jumbotron mx-n4 px-5">
             Design Hub
             <small class="lead">Check In</small>
         </h1>
 
         <!-- List all visitors here -->
-        <div class="d-flex flex-column justify-content-start align-items-center px-3">
+        <div class="d-flex flex-column justify-content-start align-items-center px-3 my-4">
             <form class="form my-3 w-75">
                 <input class="form-control" placeholder="Type to search for visitors" type="search"
                     name="search_visitors" />
@@ -46,7 +56,7 @@
                 <p class="my-2 lead"> Previous visitors' info.
                 </p><br />
 
-                <table class="table table-responsive table-striped">
+                <table class="visitors table table-responsive table-striped">
                     <thead class="thead-dark">
                         <tr>
                             <th class="px-n4">#</th>
@@ -76,6 +86,10 @@
                 </table>
             </section>
         </div>
+
+        <section class="d-flex justify-content-center">
+            <a class="btn-lg btn-success add-new-visitor" href="{% url 'add-new-visitor' %}">Add New Visitor</a>
+        </section>
     </main>
 
     <!-- Jquery -->

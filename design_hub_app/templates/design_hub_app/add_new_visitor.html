@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Design Hub Check-In</title>
+    <!-- CSS Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <style>
+        .form {
+            max-width: 40rem;
+        }
+
+        table tbody {
+            font-size: 1rem !important;
+            margin: 0.5rem auto;
+            width: 75vw;
+        }
+
+        tbody>tr>* {
+            margin: .78rem .5rem !important;
+            padding: 1rem 0rem !important;
+        }
+
+        label {
+            font-weight: 600;
+        }
+
+        input:not([submit]) {
+            margin-left: 1.4rem !important;
+            padding: 0.3rem;
+            width: 240px;
+        }
+
+        input[type=submit] {
+            width: 45%;
+        }
+
+        .required label:after {
+            content: "*";
+        }
+
+        .errorlist {
+            list-style-type: none;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: red;
+        }
+    </style>
+</head>
+
+<body class="mx-n3">
+    <!-- Log Out section -->
+    <nav class="d-flex justify-content-end align-items-center flex-row flex-nowrap">
+        <span class="mr-auto pl-5 lead">
+            <a class="" href="{% url 'homepage' %}">Home </a></span>
+        <span class="pr-3"> Welcome, {{ user.username }}</span>
+        <span class="py-3 mr-3">
+            <a class="nav-link border rounded" href="{% url 'logout' %}">Log Out
+            </a>
+        </span>
+    </nav>
+    <main class="mb-5 mx-3">
+        <h1 class="text-bold jumbotron mx-n2">
+            Design Hub
+            <small class="lead">Check In</small>
+        </h1>
+
+        {% if submitted %}
+        <section class="px-3 py-4">
+            <p class="success lead">
+                Your message was submitted successfully. Thank you.
+            </p>
+        </section>
+
+        {% else %}
+        <section class="mx-3 pl-4">
+            <h3 class="py-3">Add Visitor </h3>
+            <form action="" method="post" novalidate>
+                <table class="">
+                    {{ form.as_table }}
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td><input type="submit" class="mt-2 btn bg-primary text-white" value="Submit"></td>
+                    </tr>
+                </table>
+                {% csrf_token %}
+            </form>
+        </section>
+        {% endif %}
+    </main>
+</body>
+
+<!-- Jquery -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<!-- JS Bootstrap -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+    integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
+    crossorigin="anonymous"></script>
+
+</html>
