@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Design Hub Check-In</title>
+    <title>Design Hub Check-In-System</title>
     <!-- CSS Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -18,19 +18,20 @@
         table tbody {
             font-size: 1rem !important;
         }
-        .add-new-visitor:hover,
-        .add-new-visitor:focus
-        {
+
+        .add-new-guest:hover,
+        .add-new-guest:focus {
             text-decoration: none;
         }
-        .visitors{
-             border-bottom: 1px solid #eee;
+
+        .guests {
+            border-bottom: 1px solid #eee;
         }
     </style>
 </head>
 
 <body>
-    <!-- Log Out section -->
+
     <nav class="d-flex justify-content-end align-items-center flex-row flex-nowrap">
         <span class="mr-auto pl-5 lead">
             <a class="" href="{% url 'homepage' %}">Home </a></span>
@@ -43,42 +44,45 @@
     <main class="mb-5 px-3">
         <h1 class="text-bold jumbotron mx-n4 px-5">
             Design Hub
-            <small class="lead">Check In</small>
+            <small class="lead">Check In System</small>
         </h1>
 
-        <!-- List all visitors here -->
+
         <div class="d-flex flex-column justify-content-start align-items-center px-3 my-4">
             <form class="form my-3 w-75">
-                <input class="form-control" placeholder="Type to search for visitors" type="search"
-                    name="search_visitors" />
+                <input class="form-control" placeholder="Type to search for guests" type="search"
+                    name="search_guests" />
             </form>
             <section class="w-md-75 d-flex flex-column align-items-center align-content-center justify-content-center">
-                <p class="my-2 lead"> Previous visitors' info.
+                <p class="my-2 lead"> Guests Database
                 </p><br />
 
-                <table class="visitors table table-responsive table-striped">
+                <table class="guests table table-responsive table-striped">
                     <thead class="thead-dark">
                         <tr>
                             <th class="px-n4">#</th>
+                            <th>ID No.</th>
                             <th>Name</th>
                             <th>Temperature</th>
                             <th>Date</th>
-                            <th>ID No.</th>
                             <th>Telephone Number</th>
                             <th>Company</th>
+                            <th>Actions</th> 
                         </tr>
                     </thead>
                     <tbody>
-                        {% for visitor in visitors %}
+                        {% for guest in guests %}
                         <small>
                             <tr class="py-3">
-                                <th class="px-n2">{{ visitor.id }}</th>
-                                <td>{{ visitor.name }}</td>
-                                <td>{{ visitor.temperature }}</td>
-                                <td>{{ visitor.date }}</td>
-                                <th>{{ visitor.id_number }}</th>
-                                <td>{{ visitor.telephone_number }}</td>
-                                <td>{{ visitor.company }}</td>
+                                <th class="px-n2">{{ guest.id }}</th>
+                                <th>{{ guest.id_number }}</th>
+                                <td>{{ guest.name }}</td>
+                                <td>{{ guest.temperature }}</td>
+                                <td>{{ guest.date }}</td>
+                                <td>{{ guest.telephone_number }}</td>
+                                <td>{{ guest.company }}</td>
+                                <td><a href="/update/{{ guest.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
+                                <a href="/delete/{{ guest.id }}">Delete</a> </td>
                             </tr>
                         </small>
                         {% endfor %}
@@ -88,15 +92,15 @@
         </div>
 
         <section class="d-flex justify-content-center">
-            <a class="btn-lg btn-success add-new-visitor" href="{% url 'add-new-visitor' %}">Add New Visitor</a>
+            <a class="btn-lg btn-success add-new-guest" href="{% url 'add-new-guest' %}">Add New Guest</a>
         </section>
     </main>
 
-    <!-- Jquery -->
+    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
-    <!-- JS Bootstrap -->
+    
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
         integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
         crossorigin="anonymous"></script>

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Design Hub Check-In</title>
+    <title>Design Hub Check-In-System</title>
     <!-- CSS Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -67,19 +67,19 @@
     <main class="mb-5 mx-3">
         <h1 class="text-bold jumbotron mx-n2">
             Design Hub
-            <small class="lead">Check In</small>
+            <small class="lead">Check In System</small>
         </h1>
 
         {% if submitted %}
         <section class="px-3 py-4">
             <p class="success lead">
-                Your message was submitted successfully. Thank you.
+                submitted
             </p>
         </section>
 
         {% else %}
         <section class="mx-3 pl-4">
-            <h3 class="py-3">Add Visitor </h3>
+            <h3 class="py-3">Add Guest </h3>
             <form action="" method="post" novalidate>
                 <table class="">
                     {{ form.as_table }}

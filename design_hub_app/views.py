@@ -1,27 +1,28 @@
 from django.contrib.auth import authenticate, login
 from django.conf import settings
 from django.shortcuts import redirect, render
-from .models import Visitor, VisitorForm
+from .models import Guest, GuestForm
 
 # Create your views here.
 
-# Send a home_page with details of visitors
+
 def home_page(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
 
-    all_visitors =  Visitor.objects.all();
-    return render(request,'design_hub_app/homepage.html', {'visitors' : all_visitors })
+    all_guests =  Guest.objects.all();
+    return render(request,'design_hub_app/homepage.html', {'guests' : all_guests })
 
-# Send a login page 
+
 def login_page(request):  
     username = request.POST.get('username')
     password = request.POST.get('password')
     user = authenticate(request, username=username, password=password)
+
     
     if user is not None:
         login(request, user)
-        # Redirect to a success page.
+        
         return redirect('/home')    
     else:  
         if request.method == "POST":
@@ -30,19 +31,32 @@ def login_page(request):
         return render(request, 'design_hub_app/login.html')       
 
 
-# Add new visitor
-def add_new_visitor(request):
+# Add new guest
+def add_new_guest(request):
     submitted = False
 
     if request.method == 'POST':
-        form = VisitorForm(request.POST)
+        form = GuestForm(request.POST)
         
         if form.is_valid():
              form.save()
-             return redirect('/add_new_visitor/?submitted=True')
+             return redirect('/add_new_guest/?submitted=True')
     else:
-        form = VisitorForm()
+        form = GuestForm()
         if 'submitted' in request.GET:
              submitted = True 
-    return render(request, 'design_hub_app/add_new_visitor.html', {'form': form, 'submitted': submitted})
-   
+    return render(request, 'design_hub_app/add_new_guest.html', {'form': form, 'submitted': submitted})
+# def edit(request, id):  
+#     guest = Guest.objects.get(id=id)  
+#     return render(request,'edit.html', {'guest':guest})  
+def update(request, id):  
+    guest = Guest.objects.get(id=id)  
+    form = GuestForm(request.POST, instance = guest)  
+    if form.is_valid():  
+        form.save()  
+        return redirect("/home")  
+    return render(request, 'edit.html', {'guest': guest})  
+def destroy(request, id):  
+    guest = Guest.objects.get(id=id)  
+    guest.delete()  
+    return redirect("/home")  
