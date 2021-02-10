@@ -6,28 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Design Hub Check-In-System</title>
-    <!-- CSS Bootstrap -->
+    
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <style>
-        .form {
-            max-width: 40rem;
-        }
-
-        table tbody {
-            font-size: 1rem !important;
-        }
-
-        .add-new-guest:hover,
-        .add-new-guest:focus {
-            text-decoration: none;
-        }
-
-        .guests {
-            border-bottom: 1px solid #eee;
-        }
-    </style>
+        {% load static %} 
+        <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
 </head>
 
 <body>
@@ -49,15 +32,16 @@
 
 
         <div class="d-flex flex-column justify-content-start align-items-center px-3 my-4">
-            <form class="form my-3 w-75">
-                <input class="form-control" placeholder="Type to search for guests" type="search"
+            <form class="form my-3 w-75" method="POST" action="{% url 'homepage' %}">
+                {% csrf_token %}
+                <input class="form-control" placeholder="search..." type="search"
                     name="search_guests" />
             </form>
             <section class="w-md-75 d-flex flex-column align-items-center align-content-center justify-content-center">
                 <p class="my-2 lead"> Guests Database
                 </p><br />
 
-                <table class="guests table table-responsive table-striped">
+                <table class="guests table table-responsive table-striped table-sm">
                     <thead class="thead-dark">
                         <tr>
                             <th class="px-n4">#</th>
@@ -81,7 +65,7 @@
                                 <td>{{ guest.date }}</td>
                                 <td>{{ guest.telephone_number }}</td>
                                 <td>{{ guest.company }}</td>
-                                <td><a href="/update/{{ guest.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
+                                <td><a href="/edit/{{ guest.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
                                 <a href="/delete/{{ guest.id }}">Delete</a> </td>
                             </tr>
                         </small>

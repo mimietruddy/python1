@@ -2,15 +2,22 @@ from django.contrib.auth import authenticate, login
 from django.conf import settings
 from django.shortcuts import redirect, render
 from .models import Guest, GuestForm
+from django.db.models import Q
 
 # Create your views here.
-
+def get_queryset(request): 
+    if request.method== "POST":
+        query = request.POST.get('search_guests')
+        print(query)
+        return Guest.objects.filter(
+            Q(name__icontains=query))
+    return Guest.objects.all()    
 
 def home_page(request):
     if not request.user.is_authenticated:
         return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
 
-    all_guests =  Guest.objects.all();
+    all_guests =  get_queryset(request);
     return render(request,'design_hub_app/homepage.html', {'guests' : all_guests })
 
 
@@ -46,9 +53,9 @@ def add_new_guest(request):
         if 'submitted' in request.GET:
              submitted = True 
     return render(request, 'design_hub_app/add_new_guest.html', {'form': form, 'submitted': submitted})
-# def edit(request, id):  
-#     guest = Guest.objects.get(id=id)  
-#     return render(request,'edit.html', {'guest':guest})  
+def edit(request, id):  
+    guest = Guest.objects.get(id=id)  
+    return render(request,'edit.html', {'guest':guest})  
 def update(request, id):  
     guest = Guest.objects.get(id=id)  
     form = GuestForm(request.POST, instance = guest)  
@@ -59,4 +66,5 @@ def update(request, id):
 def destroy(request, id):  
     guest = Guest.objects.get(id=id)  
     guest.delete()  
-    return redirect("/home")  
+    return redirect("/home") 
+ 

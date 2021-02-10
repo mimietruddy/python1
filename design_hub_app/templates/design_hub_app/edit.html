@@ -3,11 +3,11 @@
 <head>  
     <meta charset="UTF-8">  
     <title>Index</title>  
-    {% load staticfiles %}  
-    <!-- <link rel="stylesheet" href="{% static 'css/style.css' %}"/>   -->
+    {% load static %}  
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>  
 </head>  
 <body class="mx-n3">
-  <!-- Log Out section -->
+  
   <nav class="d-flex justify-content-end align-items-center flex-row flex-nowrap">
       <span class="mr-auto pl-5 lead">
           <a class="" href="{% url 'homepage' %}">Home </a></span>
@@ -72,25 +72,6 @@
     </div>  
 </form>  
 </body>   -->
-
-
-<body class="mx-n3">
-  <!-- Log Out section -->
-  <nav class="d-flex justify-content-end align-items-center flex-row flex-nowrap">
-      <span class="mr-auto pl-5 lead">
-          <a class="" href="{% url 'homepage' %}">Home </a></span>
-      <span class="pr-3"> Welcome, {{ user.username }}</span>
-      <span class="py-3 mr-3">
-          <a class="nav-link border rounded" href="{% url 'logout' %}">Log Out
-          </a>
-      </span>
-  </nav>
-  <main class="mb-5 mx-3">
-      <h1 class="text-bold jumbotron mx-n2">
-          Design Hub
-          <small class="lead">Check In System</small>
-      </h1>
-
       {% if submitted %}
       <section class="px-3 py-4">
           <p class="success lead">

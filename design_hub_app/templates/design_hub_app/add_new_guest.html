@@ -9,48 +9,9 @@
     <!-- CSS Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <style>
-        .form {
-            max-width: 40rem;
-        }
-
-        table tbody {
-            font-size: 1rem !important;
-            margin: 0.5rem auto;
-            width: 75vw;
-        }
-
-        tbody>tr>* {
-            margin: .78rem .5rem !important;
-            padding: 1rem 0rem !important;
-        }
-
-        label {
-            font-weight: 600;
-        }
-
-        input:not([submit]) {
-            margin-left: 1.4rem !important;
-            padding: 0.3rem;
-            width: 240px;
-        }
-
-        input[type=submit] {
-            width: 45%;
-        }
-
-        .required label:after {
-            content: "*";
-        }
-
-        .errorlist {
-            list-style-type: none;
-            font-style: italic;
-            font-size: 0.9rem;
-            color: red;
-        }
-    </style>
+{%load static%}
+     <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+    
 </head>
 
 <body class="mx-n3">
