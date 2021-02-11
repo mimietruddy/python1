@@ -55,14 +55,14 @@ def add_new_guest(request):
     return render(request, 'design_hub_app/add_new_guest.html', {'form': form, 'submitted': submitted})
 def edit(request, id):  
     guest = Guest.objects.get(id=id)  
-    return render(request,'edit.html', {'guest':guest})  
+    return render(request,'design_hub_app/edit.html', {'guest':guest})  
 def update(request, id):  
     guest = Guest.objects.get(id=id)  
     form = GuestForm(request.POST, instance = guest)  
     if form.is_valid():  
         form.save()  
         return redirect("/home")  
-    return render(request, 'edit.html', {'guest': guest})  
+    return render(request, 'design_hub_app/edit.html', {'guest': guest, 'form': form})  
 def destroy(request, id):  
     guest = Guest.objects.get(id=id)  
     guest.delete()  
